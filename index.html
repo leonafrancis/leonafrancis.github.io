@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leona Francis — Computer Science × Pre-Law</title>
+<meta name="description" content="Leona Francis — Computer Science major & Pre-Law minor at Morgan State University. Machine learning, cyber law, and research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFE1EE;
+    --paper: #FFFFFF;
+    --secondary: #FFBEDA;
+    --secondary-soft: #FFE3F0;
+    --primary: #DF0C75;
+    --primary-deep: #C20A66;
+    --ink: #2E1F27;
+    --ink-soft: #6B5560;
+    --gold: #C9A66B;
+    --gold-soft: #E8DAC0;
+    --line: #FBC6DE;
+    --shadow: 0 10px 30px rgba(223, 12, 117, 0.14);
+    --bubble-fill: rgba(255, 92, 165, 0.20);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3{
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    color: var(--primary-deep);
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  :focus-visible{
+    outline: 2.5px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- BUBBLES ---------- */
+  .bubbles-bg{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .bubble{
+    position: absolute;
+    bottom: -10%;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95), rgba(255,255,255,0.12) 42%, var(--bubble-fill) 78%);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow:
+      inset 0 0 10px rgba(255,255,255,0.55),
+      0 6px 18px rgba(255, 92, 165, 0.14);
+    animation: bubble-float linear infinite;
+    opacity: 0;
+  }
+  @keyframes bubble-float{
+    0%{ transform: translate(0, 0); opacity: 0; }
+    8%{ opacity: var(--bo, 0.55); }
+    50%{ transform: translate(var(--bx, 12px), -55vh); }
+    92%{ opacity: var(--bo, 0.55); }
+    100%{ transform: translate(calc(var(--bx, 12px) * -1), -115vh); opacity: 0; }
+  }
+
+  header.nav, main, footer{ position: relative; z-index: 1; }
+
+  /* ---------- CORNER SPIRALS & GLITTER (full border frame) ---------- */
+  .corner-deco{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .frame-spiral{
+    position: absolute;
+    opacity: 0.5;
+  }
+
+  .glitter circle{
+    fill: var(--gold);
+    animation: twinkle 2.6s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .glitter .star{
+    fill: var(--primary);
+    animation: twinkle 3.2s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  @keyframes twinkle{
+    0%, 100%{ opacity: 0.25; transform: scale(0.7); }
+    50%{ opacity: 1; transform: scale(1.15); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .bubble{ display: none; }
+    .glitter circle, .glitter .star{ animation: none; opacity: 0.6; }
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,246,248,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--primary-deep);
+    text-decoration:none;
+  }
+  .nav-links{
+    display:flex;
+    gap: 26px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover{ color: var(--primary); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    padding: 96px 0 70px;
+    overflow: hidden;
+    background:
+      radial-gradient(700px 380px at 82% -10%, var(--secondary-soft), transparent 60%),
+      radial-gradient(500px 300px at 10% 110%, var(--secondary), transparent 60%);
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.25fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+
+  .seal{
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--primary) 0%, var(--primary-deep) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 8px 20px rgba(110,30,66,0.28), inset 0 0 0 3px rgba(255,255,255,0.18);
+    margin-bottom: 28px;
+  }
+  .seal span{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: #FCE9EF;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- PHOTO FRAME ---------- */
+  .photo-frame{
+    position: relative;
+    width: min(320px, 100%);
+    margin: 0 auto;
+    aspect-ratio: 4 / 5;
+  }
+  .photo-frame .ring{
+    position: absolute;
+    inset: -14px;
+    border: 1.5px solid var(--gold);
+    border-radius: 22px;
+    pointer-events: none;
+  }
+  .photo-frame .tab{
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    background: var(--gold);
+    color: #3A2B12;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    border-radius: 999px;
+    box-shadow: 0 4px 10px rgba(201,166,107,0.35);
+    z-index: 2;
+  }
+  .photo-frame .photo-box{
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(155deg, var(--secondary) 0%, var(--secondary-soft) 100%);
+    box-shadow: var(--shadow);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .photo-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display:block;
+  }
+  .photo-frame .photo-fallback{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    color: var(--primary-deep);
+    text-align:center;
+    padding: 20px;
+  }
+  .photo-frame .photo-fallback .initials{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 2.6rem;
+    color: var(--primary);
+  }
+  .photo-frame .photo-fallback small{
+    font-family:'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Space Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: var(--secondary-soft);
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before{
+    content:"§";
+    font-weight:700;
+  }
+
+  .hero h1{
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--primary);
+  }
+
+  .hero p.lede{
+    max-width: 560px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  .hero-meta{
+    margin-top: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .cta-row{
+    display:flex;
+    gap: 14px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration:none;
+    font-weight:600;
+    font-size: 0.92rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border: 1.5px solid transparent;
+  }
+  .btn-primary{
+    background: var(--primary);
+    color: #FFF3F7;
+    box-shadow: var(--shadow);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(223,12,117,0.26); }
+  .btn-ghost{
+    background: transparent;
+    border-color: var(--primary);
+    color: var(--primary-deep);
+  }
+  .btn-ghost:hover{ background: var(--secondary-soft); transform: translateY(-2px); }
+
+  /* scalloped divider */
+  .scallop{
+    height: 22px;
+    width: 100%;
+    background-repeat: repeat-x;
+    background-size: 34px 22px;
+    background-image: radial-gradient(circle at 50% 0%, transparent 15px, var(--bg) 16px);
+    background-color: var(--secondary);
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 76px 0; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 18px;
+  }
+  .section-head .tag{
+    font-family:'Space Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-transform: uppercase;
+    background: #FBF6EC;
+    border: 1px solid var(--gold-soft);
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .section-head h2{
+    font-size: 1.9rem;
+    font-weight: 600;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 44px;
+    align-items: start;
+  }
+  .about-grid p{ color: var(--ink-soft); margin: 0 0 16px; }
+  .about-grid p:last-child{ margin-bottom: 0; }
+
+  .fact-card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .fact-card dl{ margin:0; }
+  .fact-card .fact{
+    display:flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 0.92rem;
+  }
+  .fact-card .fact:last-child{ border-bottom:none; }
+  .fact-card dt{ color: var(--ink-soft); }
+  .fact-card dd{ margin:0; font-weight:600; color: var(--primary-deep); text-align:right; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .skill-card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+  }
+  .skill-card h3{
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-deep);
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.82rem;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .chip{
+    font-size: 0.82rem;
+    padding: 6px 13px;
+    border-radius: 999px;
+    background: var(--secondary-soft);
+    border: 1px solid var(--line);
+    color: var(--primary-deep);
+    font-weight: 500;
+  }
+
+  /* ---------- EXPERIENCE (timeline) ---------- */
+  .timeline{
+    display:flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .timeline-item{
+    position: relative;
+    padding: 0 0 40px 34px;
+    border-left: 2px solid var(--line);
+  }
+  .timeline-item:last-child{
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+  .timeline-item::before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 4px var(--secondary-soft);
+  }
+  .timeline-head{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .timeline-item h3{
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  .timeline-dates{
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--gold);
+    background: #FBF6EC;
+    border: 1px solid var(--gold-soft);
+    padding: 3px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .timeline-org{
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-family: 'Space Mono', monospace;
+    display:block;
+    margin-bottom: 14px;
+  }
+  .timeline-item ul{
+    margin: 0;
+    padding-left: 20px;
+    color: var(--ink-soft);
+  }
+  .timeline-item li{ margin-bottom: 8px; font-size: 0.95rem; }
+  .timeline-item li::marker{ color: var(--primary); }
+
+  /* ---------- PROJECTS (case-file styling) ---------- */
+  .docket{
+    display:flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .exhibit{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px 32px;
+    position: relative;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .exhibit:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px rgba(223,12,117,0.18);
+  }
+  .exhibit::before{
+    content: attr(data-exhibit);
+    position: absolute;
+    top: -13px;
+    left: 28px;
+    background: var(--gold);
+    color: #3A2B12;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    box-shadow: 0 4px 10px rgba(201,166,107,0.35);
+  }
+  .exhibit h3{
+    font-size: 1.35rem;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
+  .exhibit .role{
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 16px;
+    display:block;
+  }
+  .exhibit ul{
+    margin: 0 0 18px;
+    padding-left: 20px;
+    color: var(--ink-soft);
+  }
+  .exhibit li{ margin-bottom: 8px; font-size: 0.95rem; }
+  .exhibit li::marker{ color: var(--primary); }
+  .exhibit .chip-row{ margin-top: 4px; }
+
+  /* ---------- RESEARCH BAND ---------- */
+  .band{
+    background: linear-gradient(155deg, var(--primary-deep), var(--primary));
+    color: #FCE9EF;
+    border-radius: 22px;
+    padding: 46px 40px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .band h2{ color: #FFF; font-size: 1.6rem; margin-bottom: 12px; }
+  .band p{ color: #F6D8E4; margin: 0; }
+  .interest-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .interest-list li{
+    display:flex;
+    gap: 12px;
+    align-items:flex-start;
+    font-size: 0.95rem;
+    color: #FCE9EF;
+  }
+  .interest-list .dot{
+    width: 8px; height: 8px; border-radius:50%;
+    background: var(--gold);
+    margin-top: 7px;
+    flex-shrink:0;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{
+    text-align:center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 56px 32px;
+    box-shadow: var(--shadow);
+  }
+  .contact-card h2{ font-size: 2rem; margin-bottom: 14px; }
+  .contact-card p{ color: var(--ink-soft); max-width: 480px; margin: 0 auto 30px; }
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  footer{
+    padding: 34px 0 50px;
+    text-align:center;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .exhibit, .btn{ transition:none; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 800px){
+    .about-grid{ grid-template-columns: 1fr; }
+    .skill-groups{ grid-template-columns: 1fr; }
+    .band{ grid-template-columns: 1fr; padding: 34px 26px; }
+    .hero-grid{ grid-template-columns: 1fr; gap: 40px; }
+    .hero-grid .photo-frame{ order: -1; width: min(240px, 60%); }
+  }
+  @media (max-width: 560px){
+    .nav-links{ gap: 16px; }
+    .nav-links a{ font-size: 0.72rem; }
+    .hero{ padding: 70px 0 50px; }
+    section{ padding: 54px 0; }
+    .exhibit{ padding: 26px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bubbles-bg" id="bubbles" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="spiralGradShared" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="var(--primary)"/>
+      <stop offset="100%" stop-color="var(--gold)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="corner-deco" id="spiralFrame" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top">Leona Francis</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="seal"><span>LF</span></div>
+          <p class="eyebrow">Computer Science &amp; Pre-Law</p>
+          <h1>Writing code<br><em>and reading the fine print.</em></h1>
+          <p class="lede">I'm Leona — a sophomore Computer Science major with a Pre-Law minor at Morgan State University. I build machine learning systems, then ask the harder question: who's accountable when they're wrong.</p>
+          <p class="hero-meta">Baltimore, MD · Morgan State University · Class of 2029</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View my work</a>
+            <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/leonafrancis" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/leona-francis-34b007361/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="photo-frame">
+          <span class="tab">Exhibit A-1</span>
+          <div class="ring"></div>
+          <div class="photo-box">
+            <img
+              src="profile.jpg"
+              alt="Leona Francis"
+              onerror="var f=this.nextElementSibling; f.style.display='flex'; this.remove();"
+            >
+            <div class="photo-fallback" style="display:none;">
+              <span class="initials">LF</span>
+              <small>Add profile.jpg to this folder</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scallop"></div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About</h2>
+        <span class="tag">Exhibit A</span>
+      </div>
+      <div class="about-grid reveal">
+        <div>
+          <p>I'm currently a sophomore at Morgan State University, studying Computer Science with a minor in Pre-Law. I like building things that involve some judgment call &mdash; models that have to weigh evidence, systems that have to be explainable, code that eventually has to answer to a policy or a person.</p>
+          <p>Most of my work lives at the intersection of machine learning and fairness: designing pipelines that hold up under scrutiny, not just benchmarks. I'm especially drawn to cyber law and the questions around accountability, bias, and regulation in emerging tech &mdash; the pre-law side of my degree isn't a detour from CS, it's the other half of the same argument.</p>
+        </div>
+        <div class="fact-card">
+          <dl>
+            <div class="fact"><dt>Major</dt><dd>Computer Science</dd></div>
+            <div class="fact"><dt>Minor</dt><dd>Pre-Law</dd></div>
+            <div class="fact"><dt>University</dt><dd>Morgan State</dd></div>
+            <div class="fact"><dt>Standing</dt><dd>Sophomore</dd></div>
+            <div class="fact"><dt>Focus areas</dt><dd>ML · Cyber Law</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <span class="tag">Exhibit B</span>
+      </div>
+      <div class="timeline reveal">
+
+        <div class="timeline-item">
+          <div class="timeline-head">
+            <h3>Student Researcher</h3>
+            <span class="timeline-dates">May 2026 – Jul 2026</span>
+          </div>
+          <span class="timeline-org">CEAMLS SAIRI Program · Morgan State University</span>
+          <ul>
+            <li>Developed and benchmarked multimodal deep learning models combining unstructured dermatoscopic images and patient metadata from global datasets (HAM10000, PAD-UFES-20, MRA-MIDAS) to optimize skin lesion classification.</li>
+            <li>Upgraded system architecture by implementing and comparing EfficientNetV2 and Vision Transformers against prior baseline models, significantly improving classification robustness and deployment readiness.</li>
+            <li>Prioritized health equity by analyzing skin tone distribution across datasets and integrating a comprehensive fairness framework to minimize demographic performance gaps and algorithmic bias.</li>
+            <li>Embedded an explainability pipeline using Grad-CAM and SHAP alongside confidence-aware logic to provide clinicians with transparent, interpretable risk feedback.</li>
+            <li>Designed and prototyped a functional mobile/web application delivering end-to-end skin lesion screening, automated risk assessments, and location-aware clinical referral support.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-head">
+            <h3>Peer Career Ambassador</h3>
+            <span class="timeline-dates">Oct 2025 – Current</span>
+          </div>
+          <span class="timeline-org">Morgan State University</span>
+          <ul>
+            <li>Mentored an average of 10 students per week, providing targeted, data-informed feedback to significantly improve career materials.</li>
+            <li>Developed and executed on-campus promotional strategies, including presentations and social media, translating information into clear, actionable messages for broad engagement.</li>
+            <li>Managed logistics for large-scale career fairs, demonstrating strong collaboration and process management skills.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <span class="tag">Exhibit C</span>
+      </div>
+      <div class="skill-groups reveal">
+        <div class="skill-card">
+          <h3>Programming &amp; Data</h3>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">Swift</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Machine Learning &amp; AI</h3>
+          <div class="chip-row">
+            <span class="chip">Multimodal Deep Learning</span>
+            <span class="chip">Computer Vision</span>
+            <span class="chip">CNNs</span>
+            <span class="chip">Vision Transformers (ViT)</span>
+            <span class="chip">EfficientNetV2</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Data Engineering</h3>
+          <div class="chip-row">
+            <span class="chip">Data Curation</span>
+            <span class="chip">Image Normalization</span>
+            <span class="chip">Augmentation</span>
+            <span class="chip">Metadata Cleaning</span>
+            <span class="chip">Bias Mitigation Frameworks</span>
+            <span class="chip">Data Quality Checks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <span class="tag">Exhibit D</span>
+      </div>
+
+      <div class="docket reveal">
+
+        <article class="exhibit" data-exhibit="Docket No. 01">
+          <h3>DermaBridge</h3>
+          <span class="role">Multimodal Clinical Screening Application</span>
+          <ul>
+            <li>Engineered a synchronized data pipeline in Python to clean, normalize, and augment unstructured dermatoscopic scans and structured patient metadata across three major medical repositories.</li>
+            <li>Benchmarked Swin Transformers, EfficientNetV2, and traditional CNNs to optimize hierarchical feature extraction and surpass legacy baseline classification accuracy.</li>
+            <li>Deployed algorithmic bias mitigation frameworks into the training cycle, using skin tone distribution analysis to ensure equitable diagnostic performance across diverse demographic groups.</li>
+            <li>Implemented explainable AI tooling &mdash; Grad-CAM and SHAP &mdash; to generate visual heatmaps and feature-based justifications for transparent, clinician-ready predictions.</li>
+            <li>Built a full-stack prototype handling end-to-end patient screening, confidence-aware risk profiling, and location-based medical referral routing.</li>
+          </ul>
+          <div class="chip-row">
+            <span class="chip">Computer Vision</span>
+            <span class="chip">XAI</span>
+            <span class="chip">Bias Mitigation</span>
+            <span class="chip">Full-Stack</span>
+          </div>
+        </article>
+
+        <article class="exhibit" data-exhibit="Docket No. 02">
+          <h3>Kode With Klossy Workshop App</h3>
+          <span class="role">Mobile Application · 4-Person Team</span>
+          <ul>
+            <li>Managed the full software development lifecycle in a four-member team, from initial concept through deployment.</li>
+            <li>Developed key modules including user authentication (sign up / login) and curated web-view navigation, applying modern UI/UX design principles.</li>
+            <li>Delivered a functional mobile application during an intensive two-week workshop, under a tight, fast-moving timeline.</li>
+          </ul>
+          <div class="chip-row">
+            <span class="chip">Swift</span>
+            <span class="chip">UI/UX</span>
+            <span class="chip">Team Collaboration</span>
+          </div>
+        </article>
+
+        <article class="exhibit" data-exhibit="Docket No. 03">
+          <h3>Python Scripting &amp; Data Processing</h3>
+          <span class="role">Automation &amp; Data Quality</span>
+          <ul>
+            <li>Designed an automated Python process for iterative data processing and bulk calculations, such as summing and averaging across a defined range of numbers.</li>
+            <li>Implemented conditional logic to prevent critical errors, including division-by-zero handling, reflecting a detail-oriented approach to data quality.</li>
+          </ul>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">Automation</span>
+            <span class="chip">Error Handling</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Involvement &amp; Leadership</h2>
+        <span class="tag">Exhibit E</span>
+      </div>
+      <div class="skill-groups reveal" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="skill-card">
+          <h3>CyberX — Cybersecurity Organization</h3>
+          <span class="timeline-dates" style="margin-bottom:12px; display:inline-block;">2025 – Present</span>
+          <p style="margin:10px 0 0; color:var(--ink-soft); font-size:0.92rem;">Participating in ethical hacking and network defense workshops.</p>
+        </div>
+        <div class="skill-card">
+          <h3>AI Club Engineers</h3>
+          <span class="timeline-dates" style="margin-bottom:12px; display:inline-block;">2025 – Present</span>
+          <p style="margin:10px 0 0; color:var(--ink-soft); font-size:0.92rem;">Actively learning AI and machine learning applications, providing foundational knowledge for prototyping ML workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="interests">
+    <div class="wrap">
+      <div class="band reveal">
+        <div>
+          <h2>Where CS meets the law</h2>
+          <p>I'm building toward research and a career at the boundary of machine learning and cyber law &mdash; the space where a model's decision becomes a legal or ethical question. That's the throughline across everything below.</p>
+        </div>
+        <ul class="interest-list">
+          <li><span class="dot"></span>Machine learning research, with a focus on fairness and explainability</li>
+          <li><span class="dot"></span>Cyber law &mdash; accountability, privacy, and regulation in emerging tech</li>
+          <li><span class="dot"></span>Undergraduate research opportunities bridging AI and policy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <h2>Let's connect</h2>
+        <p>Open to research collaborations, internships, and conversations about ML, fairness, or tech policy.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:Leonafrancis2025@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/leonafrancis" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/leona-francis-34b007361/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Drafted &amp; filed by Leona Francis · Morgan State University · &copy; <span id="year"></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // ---------- BUBBLES ----------
+  const bubbleLayer = document.getElementById('bubbles');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (bubbleLayer && !prefersReducedMotion){
+    const count = window.innerWidth < 560 ? 9 : 15;
+    for (let i = 0; i < count; i++){
+      const b = document.createElement('span');
+      b.className = 'bubble';
+      const size = Math.random() * 42 + 14; // 14–56px
+      const left = Math.random() * 100;
+      const duration = Math.random() * 10 + 15; // 15–25s
+      const delay = Math.random() * -25; // start mid-flight, staggered
+      const drift = Math.random() * 40 + 10; // 10–50px sideways drift
+      const opacity = (Math.random() * 0.35 + 0.3).toFixed(2);
+
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.left = left + '%';
+      b.style.animationDuration = duration + 's';
+      b.style.animationDelay = delay + 's';
+      b.style.setProperty('--bx', drift + 'px');
+      b.style.setProperty('--bo', opacity);
+
+      bubbleLayer.appendChild(b);
+    }
+  }
+
+  // ---------- SPIRAL BORDER FRAME ----------
+  const spiralPathD = "M 47.0 45.0 L 47.4 45.6 L 47.7 46.4 L 47.6 47.3 L 47.3 48.2 L 46.7 49.1 L 45.7 49.9 L 44.5 50.4 L 43.1 50.6 L 41.6 50.5 L 40.0 49.8 L 38.6 48.8 L 37.4 47.3 L 36.6 45.5 L 36.2 43.5 L 36.4 41.3 L 37.1 39.0 L 38.4 37.0 L 40.3 35.2 L 42.6 33.9 L 45.3 33.1 L 48.2 33.1 L 51.1 33.7 L 53.9 35.1 L 56.4 37.2 L 58.4 39.9 L 59.7 43.1 L 60.2 46.7 L 59.9 50.4 L 58.6 54.0 L 56.5 57.3 L 53.5 60.0 L 49.9 62.1 L 45.7 63.2 L 41.4 63.4 L 36.9 62.5 L 32.8 60.5 L 29.1 57.5 L 26.1 53.6 L 24.2 49.0 L 23.3 44.0 L 23.7 38.8 L 25.3 33.7 L 28.1 29.1 L 32.1 25.2 L 36.9 22.2 L 42.4 20.5 L 48.3 20.1 L 54.2 21.1 L 59.9 23.5 L 64.9 27.3 L 68.9 32.2 L 71.7 38.0 L 73.1 44.5 L 72.9 51.2 L 71.1 57.8 L 67.8 63.9 L 63.0 69.1 L 57.1 73.1 L 50.2 75.6 L 42.8 76.5 L 35.4 75.6 L 28.2 72.9 L 21.8 68.5 L 16.5 62.7 L 12.7 55.7 L 10.6 47.8 L 10.4 39.6 L 12.2 31.4 L 15.9 23.8";
+  const svgNS = 'http://www.w3.org/2000/svg';
+
+  function makeSpiralEl(size, x, y, rotation, delay){
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 90 90');
+    svg.setAttribute('class', 'frame-spiral');
+    svg.style.width = size + 'px';
+    svg.style.height = size + 'px';
+    svg.style.left = x + 'px';
+    svg.style.top = y + 'px';
+    svg.style.transform = `rotate(${rotation}deg)`;
+
+    const path = document.createElementNS(svgNS, 'path');
+    path.setAttribute('d', spiralPathD);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', 'url(#spiralGradShared)');
+    path.setAttribute('stroke-width', '3');
+    path.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(path);
+
+    if (!prefersReducedMotion){
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('class', 'glitter');
+      const dotPositions = [[47,45],[60,47],[24,49]];
+      dotPositions.forEach((pos, i) => {
+        const c = document.createElementNS(svgNS, 'circle');
+        c.setAttribute('cx', pos[0]);
+        c.setAttribute('cy', pos[1]);
+        c.setAttribute('r', 1.5);
+        c.style.animationDelay = (delay + i * 0.35) + 's';
+        g.appendChild(c);
+      });
+      svg.appendChild(g);
+    }
+    return svg;
+  }
+
+  function buildSpiralFrame(){
+    const frame = document.getElementById('spiralFrame');
+    if (!frame) return;
+    frame.innerHTML = '';
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const mobile = w < 700;
+    const size = mobile ? 34 : 46;
+    const spacing = mobile ? 130 : 175;
+    const inset = size * 0.32; // let spirals peek slightly off-edge
+
+    let i = 0;
+
+    // top & bottom edges
+    for (let x = spacing / 2; x < w; x += spacing){
+      frame.appendChild(makeSpiralEl(size, x - size / 2, -inset, i % 2 ? 20 : -15, i * 0.3));
+      i++;
+      frame.appendChild(makeSpiralEl(size, x - size / 2, h - size + inset, i % 2 ? -20 : 15, i * 0.3));
+      i++;
+    }
+
+    // left & right edges
+    for (let y = spacing / 2; y < h; y += spacing){
+      frame.appendChild(makeSpiralEl(size, -inset, y - size / 2, i % 2 ? 100 : 80, i * 0.3));
+      i++;
+      frame.appendChild(makeSpiralEl(size, w - size + inset, y - size / 2, i % 2 ? -100 : -80, i * 0.3));
+      i++;
+    }
+  }
+
+  buildSpiralFrame();
+  let spiralResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(spiralResizeTimer);
+    spiralResizeTimer = setTimeout(buildSpiralFrame, 200);
+  });
+</script>
+
+</body>
+</html>
