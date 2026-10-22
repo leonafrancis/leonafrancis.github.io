@@ -606,7 +606,25 @@
   .exhibit li{ margin-bottom: 8px; font-size: 0.95rem; }
   .exhibit li::marker{ color: var(--primary); }
   .exhibit .chip-row{ margin-top: 4px; }
-
+/* ---------- DEMOS & CODE ---------- */
+.demo-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:26px; }
+.demo-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:18px;
+  overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column;
+}
+.demo-media{
+  aspect-ratio:16/9; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(155deg,var(--secondary),var(--secondary-soft));
+  color:var(--primary-deep); font-family:'Space Mono',monospace;
+  font-size:.78rem; text-align:center; padding:16px;
+}
+.demo-media iframe,.demo-media video{ width:100%; height:100%; border:0; display:block; object-fit:cover; }
+.demo-body{ padding:22px 24px 26px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.demo-body h3{ font-size:1.2rem; }
+.demo-body p{ margin:0; color:var(--ink-soft); font-size:.93rem; }
+.demo-body .cta-row{ margin-top:auto; padding-top:6px; }
+.btn-sm{ padding:8px 16px; font-size:.84rem; }
+@media (max-width:800px){ .demo-grid{ grid-template-columns:1fr; } }
   /* ---------- RESEARCH BAND ---------- */
   .band{
     background: linear-gradient(155deg, var(--primary-deep), var(--primary));
@@ -714,6 +732,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#demos">Demos</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -922,7 +941,48 @@
       </div>
     </div>
   </section>
+<section id="demos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Demos &amp; Code</h2>
+      <span class="tag">Evidence</span>
+    </div>
 
+    <div class="demo-grid reveal">
+
+      <article class="demo-card">
+        <div class="demo-media">
+          <!-- YouTube/Vimeo: replace this line with
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="DermaBridge demo" allowfullscreen></iframe>
+          Or a video file in your folder:
+          <video controls poster="dermabridge-poster.jpg"><source src="dermabridge-demo.mp4" type="video/mp4"></video> -->
+          Demo video coming soon
+        </div>
+        <div class="demo-body">
+          <h3>DermaBridge</h3>
+          <p>Walkthrough of the skin lesion screening app, from scan upload to risk assessment and clinical referral.</p>
+          <div class="chip-row"><span class="chip">Python</span><span class="chip">Computer Vision</span></div>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-sm" href="https://github.com/YOUR-USERNAME/dermabridge" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card">
+        <div class="demo-media">Demo video coming soon</div>
+        <div class="demo-body">
+          <h3>Kode With Klossy Workshop App</h3>
+          <p>The mobile app our four-person team built in two weeks, with sign up, login, and curated web views.</p>
+          <div class="chip-row"><span class="chip">Swift</span><span class="chip">UI/UX</span></div>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-sm" href="https://github.com/YOUR-USERNAME/your-repo" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
   <section id="leadership">
     <div class="wrap">
       <div class="section-head">
